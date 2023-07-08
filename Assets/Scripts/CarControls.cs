@@ -50,7 +50,7 @@ public class CarControls : MonoBehaviour
     public void FixedUpdate()
     {
         _speedNum = this.GetComponent<Rigidbody>().velocity.magnitude;
-        if(_speedNum > 20)
+        if(_speedNum > 10)
         {
             this.GetComponent<AudioSource>().pitch = 1;
         }
@@ -59,7 +59,7 @@ public class CarControls : MonoBehaviour
             this.GetComponent<AudioSource>().pitch = -0.5f;
         }
 
-        Vector3 targetPosition = this.transform.position + _dist.normalized * 450;
+        Vector3 targetPosition = this.transform.position + _dist.normalized * 500;
         _background.transform.position = new Vector3(_background.transform.position.x, _background.transform.position.y, targetPosition.z);
 
         float motor = maxMotorTorque * _speed;
@@ -82,9 +82,13 @@ public class CarControls : MonoBehaviour
         }
     }
 
-    public void ButtonUp()
+    public void SpeedButtonUp()
     {
         _speed = 0;
+    }
+
+    public void SteeringButtonUp()
+    {
         _angle = 0;
     }
 
